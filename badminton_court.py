@@ -9,7 +9,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from tqdm import tqdm
 
-driver = webdriver.Chrome("./chromedriver")
+driver = webdriver.Chrome("/Users/bubuenergy/Desktop/chromedriver")
 class Page:
     def __init__(self, url):
         self.url = url
