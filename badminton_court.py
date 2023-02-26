@@ -98,9 +98,9 @@ for numm, soup in enumerate(soup_col):
                         offline[int(possible.contents[0].get_text().split()[0])-8][num] += 1
 
 import pandas as pd
-online_pd = pd.DataFrame(online, columns=dates, index=index)
+online_pd = pd.DataFrame(online, columns=dates, index=index, dtype='int64')
 online_pd = online_pd.loc[:, (online_pd != 0).any(axis=0)]
-offline_pd = pd.DataFrame(offline, columns=dates, index=index)
+offline_pd = pd.DataFrame(offline, columns=dates, index=index, dtype='int64')
 offline_pd = offline_pd.loc[:, (offline_pd != 0).any(axis=0)]
 print("="*10, "可線上租借剩餘場數", "="*10)
 print(online_pd)
