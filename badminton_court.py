@@ -37,7 +37,7 @@ def update_csvs(username=os.environ['USER'], password=os.environ['PASSWORD']):
     options.add_argument('--no-sandbox')
     options.add_argument('--headless')
     # options.add_argument('--disable-dev-shm-usage')
-    options.add_argument("--window-size=480, 360")
+    # options.add_argument("--window-size=480, 360")
     # driver = webdriver.Chrome(options=options)
     driver = webdriver.Chrome('./chromedriver', chrome_options=options)
 
@@ -77,7 +77,7 @@ def update_csvs(username=os.environ['USER'], password=os.environ['PASSWORD']):
                 print("cur scroll:", cur_scroll)
                 pass
             cur_scroll+=18
-            if cur_scroll>360: cur_scroll=0
+            if cur_scroll>1080: cur_scroll=0
 
     import os 
     if not os.path.isdir("./court_information"): os.mkdir("./court_information")
