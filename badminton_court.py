@@ -62,6 +62,7 @@ def update_csvs(username=os.environ['USER'], password=os.environ['PASSWORD']):
                 soup_col.append(BS(driver.page_source, "lxml"))
                 suc = 1
             except:
+                driver.execute_script("window.scrollTo(0, 200)")
                 print("Please scroll your screen to see '一面, 二面.....'")
                 pass
 
