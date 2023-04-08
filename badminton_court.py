@@ -11,6 +11,8 @@ from tqdm import tqdm
 import requests
 import pandas as pd
 from datetime import datetime
+os.environ['USER'] = "b09902110"
+os.environ['PASSWORD'] = "Bubu011878"
 class Page:
 
     def __init__(self, url, driver):
