@@ -47,7 +47,7 @@ def update_csvs(username=os.environ['USER'], password=os.environ['PASSWORD']):
     new_page.click_button("id", "ContentPlaceHolder1_SubmitButton")
     new_page.pass_alert()
     new_page.click_button("xpath", '//a[@href="'+"/order/?Add=A:2"+'"]')
-    driver.execute_script("window.scrollTo(0, 600)")
+    # driver.execute_script("window.scrollTo(0, 600)")
 
     DATE = {0:"日", 1:"一", 2:"二", 3:"三", 4:"四", 5:"五", 6:"六"}
 
