@@ -11,6 +11,8 @@ from tqdm import tqdm
 import requests
 import pandas as pd
 from datetime import datetime
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 os.environ['USER'] = "b09902110"
 os.environ['PASSWORD'] = "Bubu011878"
 class Page:
@@ -30,9 +32,14 @@ class Page:
         element = self.driver.find_element(selector, info)
         element.send_keys(text)
 def update_csvs(username=os.environ['USER'], password=os.environ['PASSWORD']):
-    opts = webdriver.ChromeOptions()
-    opts.add_argument('--headless')
-    driver = webdriver.Chrome(options=opts)
+
+    options = Options()
+    options.add_argument('--headless')
+    options.add_argument('--no-sandbox')
+    driver = webdriver.Chrome('~/chromedriver', chrome_options=options)
+    # opts = webdriver.ChromeOptions()
+    # opts.add_argument('--headless')
+    # driver = webdriver.Chrome(options=opts)
     url = "https://rent.pe.ntu.edu.tw/member/?U=login"
     new_page = Page(url, driver)
     new_page.click_button("css selector", "a.LoginBtn")

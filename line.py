@@ -7,7 +7,6 @@ from badminton_court import Query, Query_all
 
 from pprint import pprint
 
-
 import openai, os
 app = Flask(__name__)
 
