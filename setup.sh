@@ -1,5 +1,5 @@
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-apt install ./google-chrome-stable_current_amd64.deb
+# wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+# apt install ./google-chrome-stable_current_amd64.deb
 # 查看 chrome 版本
 google-chrome --version
 # Google Chrome 74.0.3729.131
