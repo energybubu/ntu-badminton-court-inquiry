@@ -36,7 +36,7 @@ def update_csvs(username=os.environ['USER'], password=os.environ['PASSWORD']):
     options = Options()
     options.add_argument('--headless')
     options.add_argument('--no-sandbox')
-    driver = webdriver.Chrome('~/chromedriver', chrome_options=options)
+    driver = webdriver.Chrome('./chromedriver', chrome_options=options)
     # opts = webdriver.ChromeOptions()
     # opts.add_argument('--headless')
     # driver = webdriver.Chrome(options=opts)

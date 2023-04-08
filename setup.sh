@@ -7,4 +7,4 @@ google-chrome --version
 # 安裝 chrome driver (v74版)
 wget https://chromedriver.storage.googleapis.com/74.0.3729.6/chromedriver_linux64.zip
 # 這邊將 chromedriver 放到家目錄下 (docker image以/root為家目錄)
-unzip chromedriver_linux64.zip -d /root/
+unzip chromedriver_linux64.zip -d ./
