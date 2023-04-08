@@ -36,6 +36,7 @@ def update_csvs(username=os.environ['USER'], password=os.environ['PASSWORD']):
     options = Options()
     options.add_argument('--no-sandbox')
     options.add_argument('--headless')
+    options.add_argument('--disable-dev-shm-usage')
     options.add_argument("--window-size=1920, 1080")
     # driver = webdriver.Chrome(options=options)
     driver = webdriver.Chrome('./chromedriver', chrome_options=options)
@@ -75,7 +76,8 @@ def update_csvs(username=os.environ['USER'], password=os.environ['PASSWORD']):
                 driver.execute_script(f"window.scrollTo(0, {cur_scroll})")
                 print("cur scroll:", cur_scroll)
                 pass
-            cur_scroll+=100
+            cur_scroll+=50
+            if cur_scroll>1080: cur_scroll=0
 
     import os 
     if not os.path.isdir("./court_information"): os.mkdir("./court_information")
@@ -161,25 +163,6 @@ def Query_all():
         ret_col.append(ret)
     return ret_col
 def Query(username=os.environ['USER'], password=os.environ['PASSWORD'], assign_date="2023-04-11"):
-    # try:
-    #     online_pd = pd.read_csv("./summary/可線上租借剩餘場數.csv")
-    #     offline_pd = pd.read_csv("./summary/可現場租借剩餘場數.csv")
-    #     ret = ""
-    #     for date, courts in zip(online_pd['Unnamed: 0'].values, online_pd[assign_date].values):
-    #         ret += date.ljust(8)
-    #         ret += str(courts).rjust(4)
-    #         ret += '\n'
-    #     return ret
-    # except:
-    #     try:
-    #         ret = ""
-    #         for date, courts in zip(offline_pd['Unnamed: 0'].values, offline_pd[assign_date].values):
-    #             ret += date.ljust(8)
-    #             ret += str(courts).rjust(4)
-    #             ret += '\n'
-    #         return ret
-    #     except:
-    #         pass
     update_csvs(username=os.environ['USER'], password=os.environ['PASSWORD'])
     try:
         online_pd = pd.read_csv("./summary/可線上租借剩餘場數.csv")
