@@ -179,16 +179,13 @@ def Query(username=os.environ['USER'], password=os.environ['PASSWORD'], assign_d
             ret += '\n'
         return ret
     except:
-        try:
-            ret = ""
-            for date, courts in zip(offline_pd['Unnamed: 0'].values, offline_pd[assign_date].values):
-                ret += date.ljust(8)
-                ret += str(courts).rjust(4)
-                ret += '\n'
-            return ret
-        except:
-            return "請輸入一週內的日期，不好意思。\n\n如果需要占卜的功能，歡迎私訊小編，可以付費解鎖！"
-
+        ret = ""
+        for date, courts in zip(offline_pd['Unnamed: 0'].values, offline_pd[assign_date].values):
+            ret += date.ljust(8)
+            ret += str(courts).rjust(4)
+            ret += '\n'
+        return ret
+        
 
 if __name__ == "__main__":
     msg = Query(username=os.environ['USER'], password=os.environ['PASSWORD'], assign_date="2023-04-11")
