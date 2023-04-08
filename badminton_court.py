@@ -7,6 +7,7 @@ import os, sys
 from selenium.webdriver.common.alert import Alert
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
 from tqdm import tqdm
 import requests
 import pandas as pd
@@ -33,11 +34,11 @@ class Page:
 def update_csvs(username=os.environ['USER'], password=os.environ['PASSWORD']):
 
     options = Options()
-    options.add_argument('--headless')
-    options.add_argument('--no-sandbox')
-    options.add_argument("--window-size=720,480")
-    # driver = webdriver.Chrome(options=options)
-    driver = webdriver.Chrome('./chromedriver', chrome_options=options)
+    # options.add_argument('--headless')
+    # options.add_argument('--no-sandbox')
+    options.add_argument("--window-size=1920, 1080")
+    driver = webdriver.Chrome(options=options)
+    # driver = webdriver.Chrome('./chromedriver', chrome_options=options)
 
     # opts = webdriver.ChromeOptions()
     # opts.add_argument('--headless')
@@ -50,12 +51,18 @@ def update_csvs(username=os.environ['USER'], password=os.environ['PASSWORD']):
     new_page.click_button("id", "ContentPlaceHolder1_SubmitButton")
     new_page.pass_alert()
     new_page.click_button("xpath", '//a[@href="'+"/order/?Add=A:2"+'"]')
+
+    # js_code = "arguments[0].scrollIntoView();"
+    # element = driver.find_element(By.CLASS_NAME, "SubVenuesMenu")
+    # driver.execute_script(js_code, element)
+
     # driver.execute_script("window.scrollTo(0, 600)")
 
     DATE = {0:"日", 1:"一", 2:"二", 3:"三", 4:"四", 5:"五", 6:"六"}
 
     courts = driver.find_elements("class name", "VSMenu")
     soup_col = []
+    cur_scroll = 0
     for court in tqdm(courts):
         suc = 0
         while suc!=1:
@@ -65,9 +72,10 @@ def update_csvs(username=os.environ['USER'], password=os.environ['PASSWORD']):
                 soup_col.append(BS(driver.page_source, "lxml"))
                 suc = 1
             except:
-                driver.execute_script("window.scrollTo(0, 200)")
-                print("Please scroll your screen to see '一面, 二面.....'")
+                driver.execute_script(f"window.scrollTo(0, {cur_scroll})")
+                print("cur scroll:", cur_scroll)
                 pass
+            cur_scroll+=100
 
     import os 
     if not os.path.isdir("./court_information"): os.mkdir("./court_information")
