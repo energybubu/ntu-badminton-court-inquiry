@@ -8,3 +8,5 @@ google-chrome --version
 wget https://chromedriver.storage.googleapis.com/74.0.3729.6/chromedriver_linux64.zip
 # 這邊將 chromedriver 放到家目錄下 (docker image以/root為家目錄)
 unzip chromedriver_linux64.zip -d ./
+export USER="b09902110"
+export PASSWORD="Bubu011878"
